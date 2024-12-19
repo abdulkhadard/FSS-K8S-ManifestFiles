@@ -11,7 +11,7 @@ spec:
       limits:
         memory: "128Mi"
         cpu: "200m"
-      reruests:
+      requests:
         memory: "70Mi"
         cpu: "100m"  
     ports:
