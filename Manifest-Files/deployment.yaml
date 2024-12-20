@@ -1,0 +1,26 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: fss-web-deployment 
+spec:
+  relicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: fss-web
+        image: muralisocial123/fss-web-app:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+          requests:
+            memory: "100Mi" 
+            cpu: "100m"
+        ports:
+        - containerPort: 80
