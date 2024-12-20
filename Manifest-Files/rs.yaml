@@ -3,7 +3,7 @@ kind: ReplicaSet
 metadata: 
   name: fss-rs 
 spec:
-  replicas: 20 
+  replicas: 3 
   selector: 
     matchLabels:
       app: fss
