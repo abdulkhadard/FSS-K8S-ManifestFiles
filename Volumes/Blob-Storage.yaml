@@ -33,3 +33,20 @@ spec:
       volumes:
       - name: mongodb-storage
         emptyDir: {}
+--- 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: s3-credentials
+data:
+  AWS_ACCESS_KEY_ID: <your-access-key-id>
+  AWS_SECRET_ACCESS_KEY: <your-secret-access-key>
+--- 
+#https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html
+#https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html
+
+kubectl apply -f s3-credentials-configmap.yaml
+kubectl apply -f mongodb-deployment.yaml
+kubectl get pods
+kubectl describe pod <POD_NAME>
+kubectl logs <POD_NAME> -c s3-sync

@@ -1,0 +1,26 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pod-reader
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+--- 
+# kubectl apply -f clusterrole.yaml
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: pod-reader-binding
+subjects:
+- kind: User
+  name: john-doe  # Replace with the actual username
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: pod-reader  # Name of the ClusterRole
+  apiGroup: rbac.authorization.k8s.io
+# kubectl apply -f clusterrolebinding.yaml
+# kubectl get clusterroles
+# kubectl get clusterrolebindings
