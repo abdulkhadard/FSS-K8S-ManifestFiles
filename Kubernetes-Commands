@@ -1,0 +1,81 @@
+  112  git pull
+  113  clear
+  114  ls
+  115  cd Manifest-Files
+  116  clear
+  117  kubectl get ns
+  118  kubectl get pods -n prod-ns
+  119  git pull
+  120  ls
+  121  clear
+  122  kubectl apply -f rs.yaml
+  123  clear
+  124  git pull
+  125  kubectl apply -f rs.yaml
+  126  git pull
+  127  kubectl apply -f rs.yaml
+  128  clear
+  129  kubectl get rs
+  130  kubectl get pods
+  131  kubectl get pods -o wide
+  132  clear
+  133  kubectl get rs
+  134  kubectl describe rs fss-rs
+  135  clear
+  136  kubectl get rs
+  137  kubectl get pods
+  138  kubectl get pods -o wide
+  139  kubectl delete pod fss-rs-7hrtg
+  140  kubectl get pods -o wide
+  141  git pull
+  142  kubectl apply -f rs.yaml
+  143  kubectl get pods -o wide
+  144  kubectl top pods
+  145  kubectl apply -f kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+  146  kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+  147  kubectl top pods
+  148  kubectl get pods -n kube-system -l k8s-app=metrics-server
+  149  kubectl top pods
+  150  kubectl top nodes
+  151  git pull
+  152  kubectl apply -f rs.yaml
+  153  kubectl get pods
+  154  clear
+  155  kubectl get events --sort-by=.metadata.creationTimestamp
+  156  clear
+  157  kubectl get pods
+  158  git pull
+  159  kubectl apply -f rs.yaml
+  160  kubectl get pods
+  161  git pull
+  162  kubectl apply -f rs.yaml
+  163  git pull
+  164  kubectl apply -f rs.yaml
+  165  kubectl get pods
+  166  kubectl describe pod fss-rs-8q9bk
+  167  git pull
+  168  kubectl apply -f rs-example.yaml
+  169  kubectl get pods
+  170  kubectl describe pod fss-rs-example-5726s
+  171  kubectl get pods
+  172  kubectl logs fss-rs-example-5726s
+  173  clear
+  174  kubectl get rs
+  175  kubectl delete rs fss-rs-example
+  176  clear
+  177  git pull
+  178  kubectl apply -f deployment.yaml
+  179  git pull
+  180  kubectl apply -f deployment.yaml
+  181  kubectl get deployments
+  182  kubectl get pods
+  183  kubectl get rs
+  184  kubectl describe fss-web-deployment
+  185  kubectl describe deployment fss-web-deployment
+  186  kubectl top pods
+  187  clear
+  188  kubectl get rs
+  189  kubectl get deployments
+  190  kubectl scale deployment fss-web-deployment --replicas 5
+  191  kubectl get deployments
+  192  kubectl get pods
