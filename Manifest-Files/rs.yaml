@@ -14,6 +14,6 @@ spec:
     spec: 
       containers:
         - name: fss-web 
-          image: muralisocial123/fss-web-app:latest 
+          image: muralisocial123/fss-web-ap:latest 
           ports:
             - containerPort: 80
