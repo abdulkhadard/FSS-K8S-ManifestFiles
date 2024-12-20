@@ -1,0 +1,42 @@
+kubectl create namespace monitoring
+helm install prometheus prometheus-community/prometheus \
+  --namespace monitoring \
+  --set server.service.type=NodePort \
+  --set alertmanager.service.type=NodePort
+kubectl get pods -n monitoring
+kubectl get svc -n monitoring
+kubectl get svc -n monitoring prometheus-server
+#################################################
+Install Grafana
+
+helm install grafana grafana/grafana \
+  --namespace monitoring \
+  --set service.type=NodePort
+kubectl get pods -n monitoring
+kubectl get svc -n monitoring
+kubectl get svc -n monitoring grafana
+kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+
+
+Summary Commands :
+# Add Helm Repositories
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+
+# Create Namespace
+kubectl create namespace monitoring
+
+# Deploy Prometheus
+helm install prometheus prometheus-community/prometheus \
+  --namespace monitoring \
+  --set server.service.type=NodePort \
+  --set alertmanager.service.type=NodePort
+
+# Deploy Grafana
+helm install grafana grafana/grafana \
+  --namespace monitoring \
+  --set service.type=NodePort
+
+# Get Grafana Admin Password
+kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
