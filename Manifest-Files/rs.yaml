@@ -1,0 +1,19 @@
+apiVersion: apps/v1 
+kind: ReplicaSet 
+metadata: 
+  name: fss-rs 
+spec:
+  replicas: 3 
+  selector: 
+    matchLabels:
+      app: fss
+  template:
+    metadata:
+    labels:
+      app: fss 
+    spec: 
+      containers:
+        - name: fss-web 
+          image: muralisocial123/fss-web-app:latest 
+      ports:
+        - containerPort: 80
