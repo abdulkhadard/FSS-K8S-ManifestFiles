@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+      - name: mongodb
+        image: mongo:latest
+        ports:
+        - containerPort: 27017
+        env:
+        - name: MONGO_INITDB_DATABASE
+          value: "myDatabase"
+        volumeMounts:
+        - name: mongodb-storage
+          mountPath: /data/db  # Default MongoDB data directory
+      initContainers:
+      - name: s3-sync
+        image: amazonlinux:2
+        command: ["sh", "-c", "yum install -y s3fs-fuse && mkdir -p /data/db && s3fs my-s3-bucket /data/db -o iam_role=auto && cp -r /data/db/* /mnt/mongo && umount /data/db"]
+        volumeMounts:
+        - name: mongodb-storage
+          mountPath: /mnt/mongo
+      volumes:
+      - name: mongodb-storage
+        emptyDir: {}
