@@ -9,8 +9,8 @@ spec:
       app: fss
   template:
     metadata:
-    labels:
-      app: fss 
+      labels:
+        app: fss 
     spec: 
       containers:
         - name: fss-web 
